@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome to Python Programming</title>
+<style>
+:root{--bg:#f7f8fb;--surface:#fff;--ink:#14213d;--muted:#5b6478;--line:#dfe3ec;--blue:#2b5fa8;--yellow:#f2c230;--code:#14213d;--codeink:#e8ecf5;--ok:#1f8a4c;--bad:#c23b3b;--hl:#2e4a7d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1524;--surface:#172036;--ink:#e8ecf5;--muted:#9aa5bd;--line:#2a3550;--blue:#7fa8ee;--code:#0a0f1c;--hl:#2e4a7d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1524;--surface:#172036;--ink:#e8ecf5;--muted:#9aa5bd;--line:#2a3550;--blue:#7fa8ee;--code:#0a0f1c;--hl:#2e4a7d;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Georgia,"Times New Roman",serif}
+h1,h2,h3,nav,button,select,.mono{font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif}
+code,pre,.mono-code{font-family:Consolas,"SF Mono",Menlo,monospace}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--line)}
+nav b{margin-right:auto;font-size:1rem}
+nav a{color:var(--muted);text-decoration:none;font-size:.9rem;padding:4px 10px;border-radius:6px}
+nav a:hover{background:var(--bg);color:var(--ink)}
+main{max-width:920px;margin:0 auto;padding:0 20px 60px}
+section{padding:52px 0 8px}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.1;margin:.2em 0 .3em;letter-spacing:-.02em}
+h2{font-size:1.7rem;margin:0 0 .3em}
+p.lead{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.hero{padding-top:44px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:18px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+button,select{font-size:.92rem;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button.go{background:var(--yellow);color:#14213d;border-color:var(--yellow);font-weight:700}
+pre{margin:0;background:var(--code);color:var(--codeink);padding:14px 16px;border-radius:8px;overflow-x:auto;font-size:.92rem;line-height:1.7}
+.out{margin-top:10px;min-height:3.2em;white-space:pre-wrap;color:var(--ok);font-size:.92rem}
+.kw{color:#f2c230}.st{color:#8fd19e}.cm{color:#8a96b2}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.cols{grid-template-columns:1fr}}
+.ctrl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
+input[type=range]{accent-color:var(--blue);flex:1;min-width:140px}
+canvas{width:100%;height:280px;display:block}
+.line{display:block;padding:0 8px;border-radius:4px}
+.line.act{background:var(--hl);color:#fff}
+.vars{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}
+.var{min-width:96px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.var small{display:block;color:var(--muted);font-family:Consolas,monospace}
+.var span{font-size:1.5rem;font-family:Consolas,monospace;font-weight:700}
+.q{font-weight:700;font-family:"Trebuchet MS",system-ui,sans-serif}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;font-family:Consolas,monospace}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--surface))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--surface))}
+.fb{min-height:1.6em;color:var(--muted);font-size:.95rem}
+progress{width:100%;height:8px;accent-color:var(--blue)}
+input[type=text],input[type=number]{font-size:.95rem;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:110px}
+.lesson p{margin:.2em 0 .6em}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:14px}
+.facts div{border-left:3px solid var(--yellow);padding-left:12px}
+.facts h3{font-size:1rem;margin:0 0 .15em}
+.facts p{margin:0;font-size:.95rem;color:var(--muted);line-height:1.5}
+footer{text-align:center;color:var(--muted);padding:30px 20px;font-size:.9rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav>
+  <b>🐍 Learn Python easily</b>
+  <a href="#home">Home</a><a href="#intro">About Python</a><a href="#topics">Python Topics</a><a href="#lessons">Lessons</a><a href="#try">Example</a><a href="#graph">Graph</a><a href="#sim">Simulation</a><a href="#quiz">Quiz</a>
+</nav>
+<main>
+<section class="hero" id="home">
+  <h1>Welcome to Python programming</h1>
+  <p class="lead">Learn Python easily, one small step at a time. Python reads almost like plain English. It is a general-purpose language used for websites, data analysis, automation and AI. Its short, readable syntax makes it a popular first language. Pick an example and press Run.</p>
+  <div class="panel" id="intro">
+    <h2>About Python</h2>
+    <p>Python is a programming language: a way to give a computer clear instructions. You write short lines of text, and Python runs them from top to bottom. You don’t need any earlier coding experience to start.</p>
+    <div class="facts">
+      <div><h3>Who made it</h3><p>Guido van Rossum created Python, and it was first released in 1991.</p></div>
+      <div><h3>Where the name comes from</h3><p>It is named after the comedy show Monty Python’s Flying Circus, not the snake.</p></div>
+      <div><h3>Why it is easy</h3><p>Simple words, no semicolons, and indentation that shows how your code is organized.</p></div>
+      <div><h3>What you can build</h3><p>Websites, games, data charts, automation scripts and AI tools.</p></div>
+    </div>
+  </div>
+  <div class="panel" id="topics">
+    <h2>Python topics</h2>
+    <p>Select a topic to see what it is for and a short example.</p>
+    <div class="tabs" id="ttabs"></div>
+    <p id="tdesc"></p>
+    <pre><code id="tcode"></code></pre>
+  </div>
+  <div class="panel" id="try">
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <pre><code id="code"></code></pre>
+    <div class="ctrl"><button class="go" id="run">Run code</button></div>
+    <div class="out mono-code" id="out" aria-live="polite">Output appears here.</div>
+  </div>
+</section>
+
+<section id="lessons">
+  <h2>Variables, loops and functions</h2>
+  <p class="lead">These three ideas appear in almost every Python program. Change the values and watch the code and output update.</p>
+  <div class="panel lesson">
+    <h3>Variables: names that store values</h3>
+    <p>Use <code>=</code> to store a value under a name. You can then use that name in calculations and in <code>print()</code>.</p>
+    <div class="ctrl"><label for="vn">name</label><input type="text" id="vn" value="Asha" maxlength="20"><label for="va">age</label><input type="number" id="va" value="15" min="0" max="120"></div>
+    <pre><code id="vcode"></code></pre>
+    <div class="out mono-code" id="vout" aria-live="polite"></div>
+  </div>
+  <div class="panel lesson">
+    <h3>Loops: repeat without copying code</h3>
+    <p>A <code>for</code> loop runs a fixed number of times. A <code>while</code> loop keeps going as long as its condition is true, so it must change a value (like <code>i += 1</code>) to finish.</p>
+    <div class="ctrl"><label for="lk">Loop type</label><select id="lk"><option value="for">for loop</option><option value="while">while loop</option></select><label for="ln">Count to <b id="lnv">5</b></label><input type="range" id="ln" min="1" max="10" value="5"></div>
+    <pre><code id="lcode"></code></pre>
+    <div class="out mono-code" id="lout" aria-live="polite"></div>
+  </div>
+  <div class="panel lesson">
+    <h3>Functions: reusable blocks of code</h3>
+    <p>A function is defined once with <code>def</code> and then called as many times as you like. <code>return</code> sends the result back to the line that called it.</p>
+    <div class="ctrl"><label for="fsel">Function</label><select id="fsel"><option value="add">add</option><option value="multiply">multiply</option><option value="bigger">bigger</option></select><label for="fx">a</label><input type="number" id="fx" value="3"><label for="fy">b</label><input type="number" id="fy" value="4"></div>
+    <pre><code id="fcode"></code></pre>
+    <div class="out mono-code" id="fout" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="graph">
+  <h2>Graph: how a power function grows</h2>
+  <p class="lead">Python makes it easy to compute lists of values and plot them. Move the slider to change the exponent <code>n</code> in <code>y = x ** n</code>.</p>
+  <div class="panel">
+    <pre><code>xs = [i / 10 for i in range(-30, 31)]
+ys = [x ** n for x in xs]</code></pre>
+    <div class="ctrl"><label for="pow">Exponent n = <b id="nv">2</b></label><input type="range" id="pow" min="1" max="5" value="2"></div>
+    <canvas id="plot" role="img" aria-label="Line graph of y equals x to the power n"></canvas>
+  </div>
+  <div class="panel">
+    <h3 style="margin:0 0 .3em">More graph examples</h3>
+    <p class="fb">Pick a chart type to see the Python code and the chart it makes. The line, scatter and pie data are sample values.</p>
+    <div class="tabs" id="etabs"></div>
+    <pre><code id="ecode"></code></pre>
+    <canvas id="ex" role="img" aria-label="Example chart"></canvas>
+    <p id="eexp" style="margin:14px 0 0"></p>
+  </div>
+</section>
+
+<section id="sim">
+  <h2>Simulation: step through a loop</h2>
+  <p class="lead">A <code>for</code> loop repeats work. Step through it and watch the variables change as Python adds up 1 to n.</p>
+  <div class="panel cols">
+    <div>
+      <pre id="simcode"></pre>
+      <div class="ctrl"><label for="nn">n = <b id="nnv">5</b></label><input type="range" id="nn" min="1" max="10" value="5"></div>
+      <div class="ctrl"><button id="step">Step</button><button id="auto">Auto play</button><button id="reset">Reset</button></div>
+      <div class="vars">
+        <div class="var"><small>i</small><span id="vi">–</span></div>
+        <div class="var"><small>total</small><span id="vt">–</span></div>
+      </div>
+      <div class="fb" id="simmsg">Press Step to begin.</div>
+    </div>
+    <div><canvas id="bars" role="img" aria-label="Bar chart of the running total after each loop pass"></canvas></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz: check what you learned</h2>
+  <div class="panel" id="qbox"></div>
+</section>
+</main>
+<footer>Introduction to Python · a small interactive lesson</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- Code playground ---------- */
+const snippets = {
+  "Print": {code:`<span class="cm"># Show text on screen</span>\n<span class="kw">print</span>(<span class="st">"Hello, Python!"</span>)\n<span class="kw">print</span>(<span class="st">"2 + 3 ="</span>, 2 + 3)`, out:"Hello, Python!\n2 + 3 = 5"},
+  "Variables": {code:`name = <span class="st">"Asha"</span>\nage = 15\n<span class="kw">print</span>(name, <span class="st">"is"</span>, age + 1, <span class="st">"next year"</span>)`, out:"Asha is 16 next year"},
+  "Lists": {code:`fruits = [<span class="st">"apple"</span>, <span class="st">"mango"</span>, <span class="st">"banana"</span>]\nfruits.append(<span class="st">"guava"</span>)\n<span class="kw">print</span>(<span class="kw">len</span>(fruits), fruits[1])`, out:"4 mango"},
+  "Loops": {code:`<span class="kw">for</span> i <span class="kw">in</span> <span class="kw">range</span>(1, 4):\n    <span class="kw">print</span>(<span class="st">"Square of"</span>, i, <span class="st">"is"</span>, i * i)`, out:"Square of 1 is 1\nSquare of 2 is 4\nSquare of 3 is 9"},
+  "Functions": {code:`<span class="kw">def</span> greet(who):\n    <span class="kw">return</span> <span class="st">"Hi, "</span> + who + <span class="st">"!"</span>\n\n<span class="kw">print</span>(greet(<span class="st">"world"</span>))`, out:"Hi, world!"}
+};
+let cur = "Print";
+function showSnippet(k){
+  cur = k; $("code").innerHTML = snippets[k].code; $("out").textContent = "Output appears here.";
+  [...$("tabs").children].forEach(b => b.classList.toggle("on", b.textContent === k));
+}
+Object.keys(snippets).forEach(k => {
+  const b = document.createElement("button"); b.textContent = k; b.onclick = () => showSnippet(k); $("tabs").appendChild(b);
+});
+$("run").onclick = () => { $("out").textContent = snippets[cur].out; };
+showSnippet(cur);
+
+/* ---------- Graph ---------- */
+function setup(c){
+  const r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  c.width = w * r; c.height = h * r;
+  const g = c.getContext("2d"); g.setTransform(r,0,0,r,0,0); g.clearRect(0,0,w,h);
+  return {g,w,h};
+}
+function drawPlot(){
+  const n = +$("pow").value; $("nv").textContent = n;
+  const {g,w,h} = setup($("plot")), pad = 34;
+  const xs = Array.from({length:61}, (_,i) => (i-30)/10);
+  const ys = xs.map(x => Math.pow(x, n));
+  const lim = 9; // clamp the y-axis so shapes stay comparable
+  const X = x => pad + (x + 3) / 6 * (w - 2*pad), Y = y => h - pad - (y + lim) / (2*lim) * (h - 2*pad);
+  g.strokeStyle = css("--line"); g.fillStyle = css("--muted"); g.font = "12px sans-serif"; g.lineWidth = 1;
+  for (let x = -3; x <= 3; x++){ g.beginPath(); g.moveTo(X(x),pad/2); g.lineTo(X(x),h-pad); g.stroke(); g.fillText(x, X(x)-4, h-pad+16); }
+  [-9,-4.5,0,4.5,9].forEach(y => { g.beginPath(); g.moveTo(pad,Y(y)); g.lineTo(w-pad/2,Y(y)); g.stroke(); g.fillText(y, 4, Y(y)+4); });
+  g.strokeStyle = css("--ink"); g.lineWidth = 1.5; g.beginPath(); g.moveTo(X(0),pad/2); g.lineTo(X(0),h-pad); g.moveTo(pad,Y(0)); g.lineTo(w-pad/2,Y(0)); g.stroke();
+  g.strokeStyle = css("--blue"); g.lineWidth = 3; g.beginPath();
+  let started = false;
+  xs.forEach((x,i) => {
+    const y = Math.max(-lim, Math.min(lim, ys[i]));
+    started ? g.lineTo(X(x),Y(y)) : (g.moveTo(X(x),Y(y)), started = true);
+  });
+  g.stroke();
+  g.fillStyle = css("--muted"); g.fillText("y values beyond ±9 are clipped", w - 190, 14);
+}
+$("pow").oninput = drawPlot;
+
+/* ---------- Simulation ---------- */
+const simLines = ["total = 0","for i in range(1, n + 1):","    total += i","print(total)"];
+let S;
+function resetSim(){
+  clearInterval(S && S.timer);
+  S = {n:+$("nn").value, i:0, total:0, phase:-1, hist:[], timer:null, done:false};
+  $("nnv").textContent = S.n; $("auto").textContent = "Auto play";
+  $("vi").textContent = "–"; $("vt").textContent = "–";
+  $("simmsg").textContent = "Press Step to begin.";
+  renderSim(); drawBars();
+}
+function renderSim(){
+  $("simcode").innerHTML = simLines.map((l,k) => `<span class="line${k===S.phase?" act":""}">${l.replace(/ /g,"&nbsp;")}</span>`).join("");
+}
+function stepSim(){
+  if (S.done) return stopAuto();
+  if (S.phase === -1){ S.phase = 0; S.total = 0; $("vt").textContent = 0; $("simmsg").textContent = "total starts at 0."; }
+  else if (S.phase === 0 || S.phase === 2){
+    if (S.i < S.n){ S.i++; S.phase = 1; $("vi").textContent = S.i; $("simmsg").textContent = `The loop gives i the value ${S.i}.`; }
+    else { S.phase = 3; $("simmsg").textContent = "The loop is finished."; }
+  } else if (S.phase === 1){
+    S.total += S.i; S.hist.push(S.total); S.phase = 2; $("vt").textContent = S.total;
+    $("simmsg").textContent = `total grows to ${S.total}.`;
+  } else if (S.phase === 3){ $("simmsg").textContent = `Python prints ${S.total}. Check: n(n+1)/2 = ${S.n*(S.n+1)/2}.`; S.done = true; stopAuto(); }
+  renderSim(); drawBars();
+}
+function stopAuto(){ clearInterval(S.timer); S.timer = null; $("auto").textContent = "Auto play"; }
+$("step").onclick = stepSim;
+$("reset").onclick = resetSim;
+$("nn").oninput = resetSim;
+$("auto").onclick = () => {
+  if (S.timer) return stopAuto();
+  if (S.done) resetSim();
+  $("auto").textContent = "Pause"; S.timer = setInterval(stepSim, 700);
+};
+function drawBars(){
+  const {g,w,h} = setup($("bars")), pad = 30, max = S.n*(S.n+1)/2, bw = (w-2*pad)/S.n;
+  g.fillStyle = css("--muted"); g.font = "12px sans-serif"; g.fillText("total after each pass", pad, 14);
+  g.strokeStyle = css("--line"); g.beginPath(); g.moveTo(pad,h-pad); g.lineTo(w-pad/2,h-pad); g.stroke();
+  for (let k = 0; k < S.n; k++){
+    const x = pad + k*bw + 3, v = S.hist[k];
+    g.fillStyle = css("--muted"); g.fillText(k+1, x + bw/2 - 8, h-pad+16);
+    if (v === undefined) continue;
+    const bh = v / max * (h - 2*pad - 16);
+    g.fillStyle = k === S.hist.length-1 ? css("--yellow") : css("--blue");
+    g.fillRect(x, h-pad-bh, bw-6, bh);
+    if (bw > 24){ g.fillStyle = css("--ink"); g.fillText(v, x + (bw-6)/2 - 6, h-pad-bh-5); }
+  }
+}
+
+/* ---------- Quiz ---------- */
+const Q = [
+ {q:"Which function shows text on the screen?", o:["show()","print()","display()","echo()"], a:1, e:"print() writes values to the output."},
+ {q:"What does len([4, 8, 15]) return?", o:["2","3","15","27"], a:1, e:"len() counts items. The list has 3 items."},
+ {q:"Which line starts a function in Python?", o:["function hi():","def hi():","fun hi():","define hi()"], a:1, e:"Functions begin with the def keyword."},
+ {q:"What is the output of 7 // 2?", o:["3.5","4","3","1"], a:2, e:"// is floor division: 7 divided by 2 is 3.5, rounded down to 3."},
+ {q:"What does range(3) produce?", o:["1, 2, 3","0, 1, 2","0, 1, 2, 3","3, 2, 1"], a:1, e:"range(3) starts at 0 and stops before 3."}
+];
+let qi = 0, score = 0;
+function renderQ(){
+  const box = $("qbox");
+  if (qi >= Q.length){
+    const msg = score === Q.length ? "Perfect score. You are ready for the next lesson." : score >= 3 ? "Good work. Review the missed ones and try again." : "A solid start. Re-run the examples above and retry.";
+    box.innerHTML = `<div class="q">You scored ${score} out of ${Q.length}</div><p>${msg}</p><button class="go" id="again">Retake quiz</button>`;
+    $("again").onclick = () => { qi = 0; score = 0; renderQ(); };
+    return;
+  }
+  const c = Q[qi];
+  box.innerHTML = `<progress value="${qi}" max="${Q.length}"></progress><p class="q">Question ${qi+1} of ${Q.length}: ${c.q}</p><div class="opts"></div><div class="fb" id="fb"></div><button id="next" hidden>${qi === Q.length-1 ? "See score" : "Next question"}</button>`;
+  c.o.forEach((t,i) => {
+    const b = document.createElement("button"); b.className = "opt"; b.textContent = t;
+    b.onclick = () => {
+      const all = box.querySelectorAll(".opt"); all.forEach(x => x.disabled = true);
+      all[c.a].classList.add("right");
+      if (i === c.a){ score++; $("fb").textContent = "Correct. " + c.e; }
+      else { b.classList.add("wrong"); $("fb").textContent = "Not quite. " + c.e; }
+      $("next").hidden = false;
+    };
+    box.querySelector(".opts").appendChild(b);
+  });
+  $("next").onclick = () => { qi++; renderQ(); };
+}
+
+/* ---------- Graph examples ---------- */
+const PAL = ["#2b5fa8","#f2c230","#1f8a4c","#c23b3b","#8a6bd1"];
+const EX = {
+  "Line chart": {k:"line", t:"Temperature this week", yl:"°C", xl:"Day", x:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], y:[28,30,31,29,33,34,32],
+    code:`import matplotlib.pyplot as plt
+
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+temps = [28, 30, 31, 29, 33, 34, 32]
+
+plt.plot(days, temps, marker='o')
+plt.title('Temperature this week')
+plt.show()`},
+  "Bar chart": {k:"bar", t:"Squares of 1 to 6", yl:"n ** 2", xl:"n", x:[1,2,3,4,5,6], y:[1,4,9,16,25,36],
+    code:`import matplotlib.pyplot as plt
+
+nums = [1, 2, 3, 4, 5, 6]
+squares = [n ** 2 for n in nums]
+
+plt.bar(nums, squares)
+plt.title('Squares of 1 to 6')
+plt.show()`},
+  "Scatter plot": {k:"scatter", t:"Study hours and marks", yl:"marks", xl:"Hours studied", x:[1,2,3,4,5,6,7,8], y:[35,42,50,55,63,70,74,85],
+    code:`import matplotlib.pyplot as plt
+
+hours = [1, 2, 3, 4, 5, 6, 7, 8]
+marks = [35, 42, 50, 55, 63, 70, 74, 85]
+
+plt.scatter(hours, marks)
+plt.xlabel('Hours studied')
+plt.ylabel('Marks')
+plt.show()`},
+  "Pie chart": {k:"pie", t:"A day in hours", x:["Sleep","School","Study","Play","Other"], y:[8,6,3,4,3],
+    code:`import matplotlib.pyplot as plt
+
+parts = ['Sleep', 'School', 'Study', 'Play', 'Other']
+hours = [8, 6, 3, 4, 3]
+
+plt.pie(hours, labels=parts, autopct='%1.0f%%')
+plt.show()`}
+};
+let curEx = "Line chart";
+function drawEx(){
+  const e = EX[curEx], {g,w,h} = setup($("ex")), pad = 44;
+  g.font = "12px sans-serif"; g.fillStyle = css("--ink"); g.fillText(e.yl ? `${e.t} (${e.yl})` : e.t, 10, 16);
+  if (e.k === "pie"){
+    const tot = e.y.reduce((a,b) => a+b, 0), r = Math.min(w*0.3, (h-50)/2), cx = r+16, cy = h/2+10; let a0 = -Math.PI/2;
+    e.y.forEach((v,i) => {
+      const a1 = a0 + v/tot*2*Math.PI;
+      g.fillStyle = PAL[i]; g.beginPath(); g.moveTo(cx,cy); g.arc(cx,cy,r,a0,a1); g.closePath(); g.fill(); a0 = a1;
+      g.fillRect(2*r+40, 40+i*24, 12, 12); g.fillStyle = css("--ink"); g.fillText(`${e.x[i]} ${v}h (${Math.round(v/tot*100)}%)`, 2*r+58, 51+i*24);
+    });
+    return;
+  }
+  const num = e.k === "scatter", lo = Math.min(...e.y), hi = Math.max(...e.y);
+  const ymin = e.k === "bar" ? 0 : lo - (hi-lo)*0.15, ymax = hi*1.08;
+  const xmin = Math.min(...e.x), xmax = Math.max(...e.x), span = w - pad - 14;
+  const X = i => num ? pad + (e.x[i]-xmin+0.5)/(xmax-xmin+1)*span : pad + (i+0.5)/e.x.length*span;
+  const Y = v => h - pad - (v-ymin)/(ymax-ymin)*(h-pad-28);
+  g.strokeStyle = css("--line"); g.lineWidth = 1;
+  for (let t = 0; t <= 4; t++){ const v = ymin + (ymax-ymin)*t/4; g.beginPath(); g.moveTo(pad,Y(v)); g.lineTo(w-10,Y(v)); g.stroke(); g.fillStyle = css("--muted"); g.fillText(Math.round(v), 6, Y(v)+4); }
+  e.x.forEach((v,i) => { g.fillStyle = css("--muted"); g.fillText(String(v), X(i)-10, h-pad+16); });
+  g.fillText(e.xl, w/2-20, h-8);
+  if (e.k === "line"){
+    g.strokeStyle = css("--blue"); g.lineWidth = 3; g.beginPath(); e.y.forEach((v,i) => i ? g.lineTo(X(i),Y(v)) : g.moveTo(X(i),Y(v))); g.stroke();
+  }
+  e.y.forEach((v,i) => {
+    if (e.k === "bar"){
+      const bw = span/e.x.length*0.6; g.fillStyle = css("--blue"); g.fillRect(X(i)-bw/2, Y(v), bw, Y(ymin)-Y(v));
+      g.fillStyle = css("--ink"); g.fillText(v, X(i)-6, Y(v)-5);
+    } else {
+      g.fillStyle = css("--yellow"); g.strokeStyle = css("--blue"); g.lineWidth = 2; g.beginPath(); g.arc(X(i),Y(v),5,0,7); g.fill(); g.stroke();
+    }
+  });
+}
+const WHY = {
+  "Line chart": "<b>How the code works:</b> <code>import matplotlib.pyplot as plt</code> loads the plotting tools. The two lists hold the x values (days) and the y values (temperatures). <code>plt.plot()</code> joins the points with a line and <code>plt.show()</code> opens the chart.<br><b>Use it when</b> you want to see how something changes over time.",
+  "Bar chart": "<b>How the code works:</b> <code>[n ** 2 for n in nums]</code> is a list comprehension. It builds a new list by squaring every number in <code>nums</code>. Then <code>plt.bar()</code> draws one bar for each value.<br><b>Use it when</b> you want to compare amounts across categories.",
+  "Scatter plot": "<b>How the code works:</b> each dot is one pair of values: the first hour with the first mark, the second with the second, and so on. The dots rise from left to right, which shows that more study time goes with higher marks.<br><b>Use it when</b> you want to look for a relationship between two measurements.",
+  "Pie chart": "<b>How the code works:</b> <code>plt.pie()</code> turns each number into a slice of the whole. The option <code>autopct='%1.0f%%'</code> prints each slice’s percentage.<br><b>Use it when</b> you want to show how a total is split into a few parts."
+};
+function showEx(k){
+  curEx = k; $("eexp").innerHTML = WHY[k]; $("ecode").textContent = EX[k].code; $("ex").setAttribute("aria-label", k + ": " + EX[k].t);
+  [...$("etabs").children].forEach(b => b.classList.toggle("on", b.textContent === k)); drawEx();
+}
+Object.keys(EX).forEach(k => {
+  const b = document.createElement("button"); b.textContent = k; b.onclick = () => showEx(k); $("etabs").appendChild(b);
+});
+showEx(curEx);
+
+/* ---------- Topics ---------- */
+const topics = {
+  "Variables": ["A variable is a name that stores a value so you can use it later.", `age = 15\nprice = 9.5\nname = 'Asha'`],
+  "Data types": ["Values have types: whole numbers (int), decimals (float), text (str) and True/False (bool).", `print(type(7))      # int\nprint(type(7.5))    # float\nprint(type('hi'))   # str\nprint(type(True))   # bool`],
+  "Conditions": ["if, elif and else let your program choose between different paths.", `age = 20\nif age >= 18:\n    print('Adult')\nelse:\n    print('Minor')`],
+  "Loops": ["Loops repeat work. Use for to go through items, and while to repeat until something changes.", `for i in range(3):\n    print(i)\n\nn = 3\nwhile n > 0:\n    n -= 1`],
+  "Lists": ["A list keeps many values in order. Items are counted from position 0.", `colors = ['red', 'green', 'blue']\nprint(colors[0])\ncolors.append('pink')`],
+  "Dictionaries": ["A dictionary stores pairs of keys and values, like a tiny phone book.", `student = {'name': 'Asha', 'age': 15}\nprint(student['name'])\nstudent['age'] = 16`],
+  "Functions": ["A function is a named block of code you can reuse. Use return to send back a result.", `def square(x):\n    return x * x\n\nprint(square(4))`],
+  "Modules": ["Modules are ready-made toolboxes. Use import to bring one into your program.", `import math\nprint(math.sqrt(49))\nprint(math.pi)`]
+};
+function showTopic(k){
+  $("tdesc").textContent = topics[k][0]; $("tcode").textContent = topics[k][1];
+  [...$("ttabs").children].forEach(b => b.classList.toggle("on", b.textContent === k));
+}
+Object.keys(topics).forEach(k => {
+  const b = document.createElement("button"); b.textContent = k; b.onclick = () => showTopic(k); $("ttabs").appendChild(b);
+});
+showTopic("Variables");
+
+/* ---------- Lessons ---------- */
+function renderVars(){
+  const n = $("vn").value, a = Math.round(+$("va").value || 0);
+  $("vcode").textContent = `name = '${n}'
+age = ${a}
+print(name, 'is', age + 1, 'next year')`;
+  $("vout").textContent = `${n} is ${a + 1} next year`;
+}
+function renderLoop(){
+  const n = +$("ln").value, kind = $("lk").value; $("lnv").textContent = n;
+  $("lcode").textContent = kind === "for"
+    ? `n = ${n}
+for i in range(1, n + 1):
+    print(i)`
+    : `n = ${n}
+i = 1
+while i <= n:
+    print(i)
+    i += 1`;
+  $("lout").textContent = Array.from({length:n}, (_,i) => i + 1).join("\n");
+}
+const FN = {
+  add: ["def add(a, b):\n    return a + b", (a,b) => a + b],
+  multiply: ["def multiply(a, b):\n    return a * b", (a,b) => a * b],
+  bigger: ["def bigger(a, b):\n    if a > b:\n        return a\n    return b", (a,b) => Math.max(a,b)]
+};
+function renderFn(){
+  const a = +$("fx").value || 0, b = +$("fy").value || 0, k = $("fsel").value;
+  $("fcode").textContent = `${FN[k][0]}
+
+print(${k}(${a}, ${b}))`;
+  $("fout").textContent = Math.round(FN[k][1](a,b) * 1e9) / 1e9;
+}
+[["vn",renderVars],["va",renderVars],["ln",renderLoop],["lk",renderLoop],["fx",renderFn],["fy",renderFn],["fsel",renderFn]].forEach(([id,f]) => $(id).addEventListener("input", f));
+renderVars(); renderLoop(); renderFn();
+
+addEventListener("resize", () => { drawPlot(); drawBars(); drawEx(); });
+drawPlot(); resetSim(); renderQ();
+</script>
+</body>
+</html>
